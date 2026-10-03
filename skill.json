@@ -1,0 +1,44 @@
+{
+  "name": "genpark-enterprise-merkle-audit-proof-anchor-skill",
+  "version": "1.0.0",
+  "description": "Cryptographic Enterprise Audit Trail Merkle Tree Anchor (inspired by Enterprise Work Agent & Regulatory Governance). Hashes agent execution logs into tamper-proof Merkle trees, computes cryptographic inclusion proofs, and verifies audit integrity.",
+  "tools": [
+    {
+      "name": "anchor_merkle_audit_proof",
+      "description": "Cryptographic Merkle tree audit anchoring: hash agent actions into Merkle trees, compute inclusion proofs, and verify audit log immutability.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "anchor_audit_events",
+              "generate_inclusion_proof",
+              "verify_inclusion_proof",
+              "get_tree_root"
+            ],
+            "description": "Audit anchor action."
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of structured agent log events."
+          },
+          "event_index": {
+            "type": "integer",
+            "description": "Index of event leaf to generate proof for."
+          },
+          "proof_audit_payload": {
+            "type": "object",
+            "description": "Proof payload containing leaf, siblings, and expected root."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
